@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../widgets/overview_widget.dart';
 import '../widgets/title_widget.dart';
 
-class DetailsPage extends StatelessWidget {
-  const DetailsPage({Key? key}) : super(key: key);
+class DetailsPagePineBlend extends StatelessWidget {
+  const DetailsPagePineBlend({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +48,12 @@ class DetailsPage extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 20),
                                 const Text(
-                                  "Indonesia",
+                                  "Lembank",
                                   style: TextStyle(fontSize: 20),
                                 ),
                                 const SizedBox(height: 10),
                                 const Text(
-                                  "Kapal Air",
+                                  "Pine Blend",
                                   style: TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold),
@@ -72,7 +72,7 @@ class DetailsPage extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 35),
                                 const Text(
-                                  "\$6.5",
+                                  "\$5.2",
                                   style: TextStyle(
                                       fontSize: 35,
                                       fontWeight: FontWeight.bold),
@@ -84,9 +84,9 @@ class DetailsPage extends StatelessWidget {
                             bottom: -70,
                             right: -30,
                             child: Hero(
-                                tag: "kapal",
+                                tag: "Pine Blend",
                                 child: Image.asset(
-                                 "assets/pocket-kapal.png",
+                                  "assets/pocket-1.png",
                                 )),
                           ),
                           Positioned(

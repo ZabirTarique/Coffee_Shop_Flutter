@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../widgets/montly_coffee_widget.dart';
 import '../widgets/product_widget.dart';
 import 'details_page.dart';
+import 'details_page_pine_blend.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,10 +28,10 @@ class HomePage extends StatelessWidget {
                     width: double.infinity,
                     height: height * 0.223,
                     color: const Color(0xffF5C168),
-                    child: Column(
+                    child: const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
+                      children: [
                         Text(
                           "Ngo",
                           style: TextStyle(
@@ -152,13 +153,23 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                       const MonthlyCoffeeWidget(),
-                      const ProductWidget(
-                        price: "5.2",
-                        country: "Lembank",
-                        name: "Pine Blend",
-                        shape: "assets/shapes1.png",
-                        heroTag: "pine",
-                        productImage: "assets/pocket 1.png",
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DetailsPagePineBlend(),
+                            ),
+                          );
+                        },
+                        child: const ProductWidget(
+                          price: "5.2",
+                          country: "Lembank",
+                          name: "Pine Blend",
+                          shape: "assets/shapes1.png",
+                          heroTag: "pine",
+                          productImage: "assets/pocket 1.png",
+                        ),
                       ),
                       GestureDetector(
                         onTap: () {

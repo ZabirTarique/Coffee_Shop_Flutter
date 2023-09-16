@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import '../widgets/overview_widget.dart';
 import '../widgets/title_widget.dart';
 
-class DetailsPage extends StatelessWidget {
-  const DetailsPage({Key? key}) : super(key: key);
+class DetailsPageTrending extends StatelessWidget {
+  const DetailsPageTrending({Key? key, this.flag}) : super(key: key);
+  final String? flag;
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +53,18 @@ class DetailsPage extends StatelessWidget {
                                   style: TextStyle(fontSize: 20),
                                 ),
                                 const SizedBox(height: 10),
-                                const Text(
-                                  "Kapal Air",
+                                flag == '1' ? const Text(
+                                  "Golden Beans",
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold),
+                                ): const Text(
+                                  "Fix Coffee",
                                   style: TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold),
                                 ),
+
                                 const SizedBox(height: 25),
                                 Container(
                                   padding: const EdgeInsets.symmetric(
@@ -85,8 +92,10 @@ class DetailsPage extends StatelessWidget {
                             right: -30,
                             child: Hero(
                                 tag: "kapal",
-                                child: Image.asset(
-                                 "assets/pocket-kapal.png",
+                                child: flag == '1' ? Image.asset(
+                                  "assets/6.1.png",
+                                ) : Image.asset(
+                                 "assets/11.1.png",
                                 )),
                           ),
                           Positioned(
