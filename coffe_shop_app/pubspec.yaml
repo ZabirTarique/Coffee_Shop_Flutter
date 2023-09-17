@@ -14,6 +14,12 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   vertical_tabs_flutter: ^1.0.0
+  shared_preferences: ^2.2.1
+  path_provider: ^2.1.1
+  sqflite: ^2.3.0
+  badges: ^3.1.2
+  provider: ^6.0.5
+  rflutter_alert: ^2.0.7
 
 dev_dependencies:
   flutter_test:

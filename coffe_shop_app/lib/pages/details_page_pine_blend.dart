@@ -1,12 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import '../database/db_helper.dart';
+import '../model/cart_model.dart';
+import '../provider/cart_provider.dart';
 import '../widgets/overview_widget.dart';
 import '../widgets/title_widget.dart';
 
 class DetailsPagePineBlend extends StatelessWidget {
-  const DetailsPagePineBlend({Key? key}) : super(key: key);
+   DetailsPagePineBlend({Key? key}) : super(key: key);
+
+  final DBHelper dbHelper = DBHelper();
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<CartProvider>(context);
+    void saveData(int index, String? prodName, int? initPrice, int? prodPrice, String? unit, String? img) {
+      dbHelper
+          .insert(
+        Cart(
+          id: index,
+          productId: index.toString(),
+          productName: prodName,
+          initialPrice: initPrice,
+          productPrice: prodPrice,
+          quantity: ValueNotifier(1),
+          unitTag: unit,
+          image: img,
+        ),
+      )
+          .then((value) {
+        cart.addTotalPrice(prodPrice!.toDouble());
+        cart.addCounter();
+        print('Product Added to cart');
+      }).onError((error, stackTrace) {
+        Alert(
+          context: context,
+          type: AlertType.info,
+          title: "Cart Info",
+          desc: "This item is already added in the cart",
+          buttons: [
+            DialogButton(
+              onPressed: () => Navigator.pop(context),
+              width: 120,
+              child: const Text(
+                "ok",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            )
+          ],
+        ).show();
+        print("error.toString()");
+        print(error.toString());
+      });
+    }
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -92,25 +139,32 @@ class DetailsPagePineBlend extends StatelessWidget {
                           Positioned(
                             bottom: -20,
                             right: 180,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 20),
-                              decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Row(
-                                children: [
-                                  const Text(
-                                    "Add",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                            child: GestureDetector(
+                              onTap: (){
+                                //void saveData(int index, String? prodName, int? initPrice, int? prodPrice, String? unit, String? img)
+                                saveData(2,"Lembank",5,20,'Kg','assets/pocket 1.png');
+                                print('working');
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 20),
+                                decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: Row(
+                                  children: [
+                                    const Text(
+                                      "Add",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(width: 25),
-                                  Image.asset("assets/add-to-cart.png"),
-                                ],
+                                    const SizedBox(width: 25),
+                                    Image.asset("assets/add-to-cart.png"),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

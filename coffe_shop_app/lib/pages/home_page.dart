@@ -158,7 +158,7 @@ class HomePage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const DetailsPagePineBlend(),
+                              builder: (context) => DetailsPagePineBlend(),
                             ),
                           );
                         },
@@ -176,7 +176,7 @@ class HomePage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const DetailsPage(),
+                              builder: (context) =>  DetailsPage(),
                             ),
                           );
                         },

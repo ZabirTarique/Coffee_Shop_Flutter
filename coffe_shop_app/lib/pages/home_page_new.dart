@@ -1,7 +1,11 @@
 
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vertical_tabs_flutter/vertical_tabs.dart';
 
+import '../provider/cart_provider.dart';
+import '../screens/cart_screen.dart';
 import '../widgets/montly_coffee_widget.dart';
 import '../widgets/product_widget.dart';
 import 'details_page.dart';
@@ -37,9 +41,35 @@ class HomePageNew extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8),
+
+                     // const SizedBox(height: 15),
+                      Container(
+                        color: const Color(0xffF5F0E6),
                         child: Row(
+                          children: [
+                            SizedBox(
+                                height: 70,
+                                //width: 70,
+                                child: Image.asset("assets/1.png")),
+                            SizedBox(
+                                height: 70,
+                                //width: 70,
+                                child: Image.asset("assets/10.png")),
+                            SizedBox(
+                                height: 70,
+                                //width: 70,
+                                child: Image.asset("assets/4.png")),
+                            SizedBox(
+                                height: 70,
+                                //width: 70,
+                                child: Image.asset("assets/11.png")),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0,top: 10, right: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text(
                               "Coffee",
@@ -61,11 +91,6 @@ class HomePageNew extends StatelessWidget {
                           ],
                         ),
                       ),
-                     // const SizedBox(height: 15),
-                      SizedBox(
-                          height: 70,
-                          width: 70,
-                          child: Image.asset("assets/17.png")),
                     ],
                   ),
                 ),
@@ -104,16 +129,45 @@ class HomePageNew extends StatelessWidget {
                       )))),
                   Tab(icon: const Icon(Icons.shopping_cart_outlined, color: Colors.amber,size: 20,), child: Center(child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-
-                        child: const Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Icon(Icons.shopping_cart_outlined, size: 30,),
-                    )),
+                    child: Column(
+                      children: [
+                        badges.Badge(
+                          badgeContent: Consumer<CartProvider>(
+                            builder: (context, value, child) {
+                              return Text(
+                                value.getCounter().toString(),
+                                style: const TextStyle(
+                                    color: Colors.white, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                          //position: const BadgePosition(start: 30, bottom: 30),
+                          position: badges.BadgePosition.topEnd(top: -8, end: 15),
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const CartScreen()));
+                            },
+                            icon: const Icon(Icons.shopping_cart),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20.0,
+                        ),
+                      ],
+                    ),
+                    // child: Container(
+                    //   decoration: BoxDecoration(
+                    //     color: Colors.white,
+                    //     borderRadius: BorderRadius.circular(15),
+                    //   ),
+                    //
+                    //     child: const Padding(
+                    //   padding: EdgeInsets.all(10.0),
+                    //   child: Icon(Icons.shopping_cart_outlined, size: 30,),
+                    // )),
                   ))),
                 ],
                 contents: <Widget>[
@@ -136,7 +190,7 @@ class HomePageNew extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => const DetailsPagePineBlend(),
+                                          builder: (context) => DetailsPagePineBlend(),
                                         ),
                                       );
                                     },
@@ -154,7 +208,7 @@ class HomePageNew extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => const DetailsPage(),
+                                          builder: (context) => DetailsPage(),
                                         ),
                                       );
                                     },
@@ -200,7 +254,7 @@ class HomePageNew extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => const DetailsPageTrending(flag: '1',),
+                                          builder: (context) => DetailsPageTrending(flag: '1',),
                                         ),
                                       );
                                     },
@@ -218,7 +272,7 @@ class HomePageNew extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => const DetailsPageTrending(flag: '2',),
+                                          builder: (context) => DetailsPageTrending(flag: '2',),
                                         ),
                                       );
                                     },
@@ -264,7 +318,7 @@ class HomePageNew extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => const DetailsPagePineBlend(),
+                                          builder: (context) => DetailsPagePineBlend(),
                                         ),
                                       );
                                     },
@@ -282,7 +336,7 @@ class HomePageNew extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => const DetailsPage(),
+                                          builder: (context) => DetailsPage(),
                                         ),
                                       );
                                     },
@@ -328,7 +382,7 @@ class HomePageNew extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => const DetailsPagePineBlend(),
+                                          builder: (context) => DetailsPagePineBlend(),
                                         ),
                                       );
                                     },
@@ -346,7 +400,7 @@ class HomePageNew extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => const DetailsPage(),
+                                          builder: (context) => DetailsPage(),
                                         ),
                                       );
                                     },
